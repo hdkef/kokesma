@@ -32,7 +32,6 @@ export function authReducer (
         case fromAuthActions.AUTO_LOGIN:
             return state
         case fromAuthActions.LOGIN_SUCCESS:
-            console.log("payload",action.payload)
             return {
                 ...state,
                 id:action.payload["id"],

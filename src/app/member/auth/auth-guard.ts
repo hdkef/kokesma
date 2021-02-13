@@ -10,7 +10,6 @@ export class AuthGuard implements CanActivate{
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve,_)=>{
       this.store.select("auth").subscribe(x=>{
-        console.log("auth guard. auth state", x)
         if(x.token){
           resolve(true)
         }

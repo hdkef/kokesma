@@ -10,12 +10,11 @@ export class LoginToggle implements CanActivate{
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve,_)=>{
       this.store.select("auth").subscribe(x=>{
-        console.log("state role",x.role)
         if(x.role == "ADM"){
           this.router.navigateByUrl("/admin/dashboard")
           resolve(false)
         }
-        else{console.log("member login toggle reject");resolve(true)}
+        else{resolve(true)}
       })
     })
   }

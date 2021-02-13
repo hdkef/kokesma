@@ -21,7 +21,6 @@ export class AuthEffects {
             let form = {NIM:action.payload.nim,Password:action.payload.password,Role:action.payload.role}
             let loginform = JSON.stringify(form)
             let header = new HttpHeaders()
-            console.log("effect loginform",loginform)
             header.append('content-type','application/json')
             return this.http.post(`${environment.api_url}/login`,loginform,{headers:header})
             .pipe(map((x)=>{
@@ -35,7 +34,6 @@ export class AuthEffects {
                 return new fromAuthActions.LoginSuccess({id:id,token:token,expiresAtDate:expiresAtDate,role:role})
             }),
             catchError(err=>{
-                console.log("CATCH ERROR LOGIN", err.error)
                 return of(new fromAuthActions.SendInfo(err.error))
             }))
         })
@@ -45,14 +43,12 @@ export class AuthEffects {
     autoLogin = this.actions$.pipe(
         ofType(fromAuthActions.AUTO_LOGIN),
         switchMap((action:fromAuthActions.AutoLogin)=>{
-            console.log("login success")
             if(localStorage.getItem("userData")){
                 let userData = JSON.parse(localStorage.getItem("userData"))
                 let id:number = userData["ID"]
                 let token:string = userData["Token"]
                 let expiresatdate = userData["ExpiresAtDate"]
                 let role = userData["Role"]
-                console.log("role",role)
                 let duration = new Date(expiresatdate).getTime() - new Date().getTime()
                 this.autoLogout(duration)
                 return of(new fromAuthActions.LoginSuccess({id:id,token:token,expiresAtDate:expiresatdate,role:role}))
@@ -116,11 +112,8 @@ export class AuthEffects {
     }
 
     autoLogout(duration){
-        console.log("function called")
         this.logoutTimer = setTimeout(()=>{
-            console.log("the timer is executed")
             this.store.dispatch(new fromAuthActions.LogoutStart())
         },duration)
-        console.log(duration)
     }
 }

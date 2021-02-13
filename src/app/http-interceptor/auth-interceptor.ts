@@ -15,13 +15,12 @@ export class AuthInterceptorService implements HttpInterceptor {
       select("auth"),
       first(),
       mergeMap((state,_)=>{
-        console.log("state",state)
         if (state.token){
           let tokenHead = `bearer ${state.token}`
           let authorizedReq = req.clone({headers:req.headers.append("Auth",tokenHead)})
           return of(authorizedReq)
         }
-        else{console.log("masuk sini");of(req)}
+        else{of(req)}
       })
     )
   }
@@ -33,14 +32,11 @@ export class AuthInterceptorService implements HttpInterceptor {
     // )
     let tokenGet = JSON.parse(localStorage.getItem("userData"))
     if (tokenGet == null) {
-      console.log("req",req)
       return next.handle(req)
     }
     else {
       let tokenHead = `bearer ${tokenGet["Token"]}`
-      console.log("token")
       let authorizedReq = req.clone({headers:req.headers.append("Auth",tokenHead)})
-      console.log("authorizedReq",authorizedReq)
       return next.handle(authorizedReq)
     }
   }

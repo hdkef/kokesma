@@ -10,7 +10,6 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent implements OnInit{
   ngOnInit(): void {
-    console.log("app component init")
     this.store.dispatch(new fromAuthActions.AutoLogin())
   }
 

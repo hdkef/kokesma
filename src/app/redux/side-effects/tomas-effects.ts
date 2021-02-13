@@ -94,7 +94,6 @@ export class TomasEffects {
                 let rumah = x["Rumah"]
                 let curstock:Tomas[] = x["Curstock"]
                 let journal:Tomas[] = x["Journal"]
-                console.log("meminit",x)
                 return new fromTomasActions.TomasMemSuccess({nama:nama,nim:nim,rumah:rumah,curstock:curstock,journal:journal})
             },catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
@@ -112,7 +111,6 @@ export class TomasEffects {
             let housejson = JSON.stringify({Rumah:action.payload})
             return this.http.post(`${environment.api_url}/tomas/admmonitor`,housejson,{headers:header})
             .pipe(map((x)=>{
-                console.log("effect mon",x)
                 let monuser = x["User"]
                 let monjournal = x["Journal"]
                 let moncurstock = x["Curstock"]

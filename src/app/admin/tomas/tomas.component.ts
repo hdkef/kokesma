@@ -66,18 +66,10 @@ export class TomasComponent implements OnInit,OnDestroy {
   }
 
   addItem(){
-    // this.status = this.store.select("tomas").pipe(switchMap((x)=>{
-    //   return of(x["info"])
-    // }))
-    // console.log("status",this.status)
     this.store.dispatch(new fromTomasActions.TomasAddItem({Nama:this.addItemForm.value.Nama,Harga:this.addItemForm.value.Harga,Image:this.addItemForm.value.Image}))
   }
 
   addAdmTomas(){
-    // this.status = this.store.select("tomas").pipe(switchMap((x)=>{
-    //   return of(x["info"])
-    // }))
-    // console.log("status",this.status)
     this.store.dispatch(new fromTomasActions.TomasAddAdmTomas({ItemID:this.addAdmTomasForm.value.Item,House:this.addAdmTomasForm.value.Rumah,Qty:this.addAdmTomasForm.value.Qty,Batch:this.addAdmTomasForm.value.Batch}))
   }
 

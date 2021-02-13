@@ -39,7 +39,6 @@ export class TomasComponent implements OnInit {
     Nama:this.curstock.Nama,
     Qty:this.qty,
     Total:<any>this.qty * <any>this.curstock.Harga}
-    console.log("obj",object)
     let jsonData = JSON.stringify(object)
     this.addItemEvent.emit(jsonData)
   }

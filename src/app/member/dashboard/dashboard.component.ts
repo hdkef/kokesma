@@ -74,22 +74,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   pushToCheckout(newitem){
     let parsedJSON:Tomas = JSON.parse(newitem)
-    console.log(parsedJSON)
     this.tablecheckout = true
     this.Checkout.push(parsedJSON)
   }
 
   checkout(){
-    console.log(this.Checkout)
     let removedUnused = this.Checkout.map((x)=>{return {ItemID:x.ItemID,Qty:x.Qty}})
     let jsonData = JSON.stringify({House:this.Rumah,Items:removedUnused})
-    console.log("CHECKOUT",jsonData)
     this.store.dispatch(new fromTomasActions.TomasAddMemTomas(jsonData))
   }
 
   delete(index){
     this.Checkout.splice(index,1)
-    console.log("new checkout",this.Checkout)
   }
 
 }

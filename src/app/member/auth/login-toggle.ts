@@ -10,12 +10,11 @@ export class LoginToggle implements CanActivate{
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve,_)=>{
       this.store.select("auth").subscribe(x=>{
-        console.log("member login toggle")
         if(x.token){
           this.router.navigateByUrl("/member/dashboard")
           resolve(false)
         }
-        else{console.log("member login toggle reject");resolve(true)}
+        else{resolve(true)}
       })
     })
   }
