@@ -1,0 +1,28 @@
+<div id="container">
+    <div id="register" style="margin-top:25vh">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <h2 style="display: block;">Register</h2>
+            <input placeholder="Rumah" type="text" formControlName="Rumah">
+            <span class="invalid" *ngIf="registerForm.get('Rumah').touched">
+                <span class="invalid" *ngIf="registerForm.get('Rumah').errors?.required">Rumah wajib</span>
+            </span>
+            <input placeholder="NIM" type="text" formControlName="NIM">
+            <span class="invalid" *ngIf="registerForm.get('NIM').touched">
+                <span class="invalid" *ngIf="registerForm.get('NIM').errors?.required">NIM wajib</span>
+                <span class="invalid" *ngIf="registerForm.get('NIM').value <= 1000000000">NIM wajib 10 digit</span>
+            </span>
+            <input placeholder="Nama" type="text" formControlName="Nama">
+            <span class="invalid" *ngIf="registerForm.get('Nama').touched">
+                <span class="invalid" *ngIf="registerForm.get('Nama').errors?.required">Nama wajib</span>
+            </span>
+            <input placeholder="Password" type="password" formControlName="Pass">
+            <span class="invalid" *ngIf="registerForm.get('Pass').touched">
+                <span class="invalid" *ngIf="registerForm.get('Pass').errors?.required">Pass wajib</span>
+            </span>
+            <button type="submit" *ngIf="registerForm.valid">Register</button>
+        </form>
+    </div>
+    <div style="text-align: center;">
+        {{info}}
+    </div>
+</div>

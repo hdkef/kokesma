@@ -1,0 +1,38 @@
+<div id="greet">
+  <h1>Hi, {{Nama}}</h1>
+  <p style="color:red">{{info}}</p>
+</div>
+<div id="center">
+  <button (click)="logout()">logout</button>
+  <button (click)="showAdd()">beli tomas</button>
+  <button (click)="showJurnal()">lihat jurnal</button>
+</div>
+<div *ngIf="showT" id="wrapper">
+    <div id="grid" style="margin-bottom: 50px;">
+      <app-tomas *ngFor="let c of Curstock" [curstock]="c" (addItemEvent)="pushToCheckout($event)"></app-tomas>
+    </div>
+    <div *ngIf="tablecheckout">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Nama</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Total</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of Checkout">
+            <td data-label="Nama">{{c.Nama}}</td>
+            <td data-label="Qty">{{c.Qty}}</td>
+            <td data-label="Total">{{c.Total}}</td>
+            <td data-label="Delete"><button (click)="delete(Checkout.indexOf(c))">remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="display: flex;justify-content: center;">
+        <button (click)="checkout()" style="display: block;background-color: green;color:white;width:200px;height: 40px;">CHECKOUT</button>
+      </div>
+    </div>
+</div>
+<app-jurnal [journal]="Journal" *ngIf="showJ"></app-jurnal>

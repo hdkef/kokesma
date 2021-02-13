@@ -1,0 +1,11 @@
+<div id="greeting"><h1>welcome admin</h1></div>
+<div id="center">
+    <button (click)="navigate('/admin/tomas')">Kontrol Tomas</button>
+    <button (click)="showForm()">Monitor Tomas</button>
+</div>
+<div id="formmonitor">
+    <form *ngIf="show" (ngSubmit)="goMonitor()" [formGroup]="monitorForm">
+        <input type="text" placeholder="masukkan rumah" formControlName="Rumah">
+        <button type="submit">Monitor</button>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+<div id="container">
+    <div style="text-align: center;margin-top:5px;">
+        <h4>{{(info)}}</h4>
+    </div>
+    <div id="menu">
+        <button (click)="toggleInTomas()">Input tomas</button>
+        <button (click)="toggleAddTomas()">Tambah jenis barang</button>
+        <button (click)="backupReset()" style="background-color: red;color:white">Backup dan Reset</button>
+    </div>
+    <div class="tomas" *ngIf="toggleInputTomas">
+        <form [formGroup]="addAdmTomasForm" (ngSubmit)="addAdmTomas()">
+            <h2 style="display: block;">input Tomas</h2>
+            <label for="rumah">rumah</label>
+            <select formControlName="Rumah" id="rumah">
+                <option *ngFor="let rumah of homeOptions" [value]="rumah">{{rumah}}</option>
+            </select>
+            <label for="items">items</label>
+            <select formControlName="Item" id="items">
+                <option *ngFor="let item of itemsIDOptions" [value]="item">{{itemsNameOptions[itemsIDOptions.indexOf(item)]}}</option>
+            </select>
+            <input type="text" placeholder="Qty" formControlName="Qty">
+            <input type="text" placeholder="Batch" formControlName="Batch">
+            <button type="submit" *ngIf="addAdmTomasForm.valid">Submit</button>
+        </form>
+    </div>
+    <div class="tomas" *ngIf="toggleAddItems">
+        <form [formGroup]="addItemForm" (ngSubmit)="addItem()">
+            <h2 style="display: block;">Tambah jenis barang</h2>
+            <input type="text" placeholder="Nama" formControlName="Nama">
+            <input type="text" placeholder="Harga dalam rupiah" formControlName="Harga">
+            <input type="text" placeholder="image" formControlName="Image">
+            <button type="submit" *ngIf="addItemForm.valid">Submit</button>
+        </form>
+    </div>
+</div>

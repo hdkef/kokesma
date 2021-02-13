@@ -1,0 +1,76 @@
+<div id="sum">
+  <div id="center">
+    <h1 style="font-size: 80px;">{{Rumah}}</h1>
+    <div>
+      <h4 *ngFor="let u of monuser">
+        {{u}}
+      </h4>
+    </div>
+    <h4>Total beli Rp {{sum}}</h4>
+  </div>
+</div>
+<div>
+    <div style="text-align: center;">
+      <h4>Stock awal {{Rumah}}</h4>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Nama</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Harga</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of monstock">
+          <td data-label="Qty">{{s.Nama}}</td>
+          <td data-label="Qty">{{s.Qty}}</td>
+          <td data-label="Total">{{s.Harga}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div>
+    <div style="text-align: center;">
+      <h4>Stock sekarang {{Rumah}}</h4>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Nama</th>
+          <th scope="col">Qty</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of moncurstock">
+          <td data-label="Qty">{{s.Nama}}</td>
+          <td data-label="Qty">{{s.Qty}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div>
+    <div style="text-align: center;">
+      <h4>Jurnal pembelian {{Rumah}}</h4>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Nama</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let j of monjournal">
+          <td data-label="Nama">{{j.Date}}</td>
+          <td data-label="Qty">{{j.Nama}}</td>
+          <td data-label="Qty">{{j.Qty}}</td>
+          <td data-label="Total">Rp {{j.Total}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

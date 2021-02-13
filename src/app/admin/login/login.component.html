@@ -1,0 +1,19 @@
+<div id="container">
+    <div id="login" style="margin-top:25vh">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <h2 style="display: block;">Admin Login</h2>
+            <input type="text" placeholder="NIM" formControlName="NIM">
+            <span class="invalid" *ngIf="loginForm.get('NIM').touched">
+                <span class="invalid" *ngIf="loginForm.get('NIM').errors?.required">Masukan NIM anda</span>
+            </span>
+            <input type="password" placeholder="Password" formControlName="Pass">
+            <span class="invalid" *ngIf="loginForm.get('Pass').touched">
+                <span class="invalid" *ngIf="loginForm.get('Pass').errors?.required">Masukan password anda</span>
+            </span>
+            <button type="submit" *ngIf="loginForm.valid">Login</button>
+        </form>
+    </div>
+    <div style="text-align: center;">
+        {{info}}
+    </div>
+</div>

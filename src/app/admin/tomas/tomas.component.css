@@ -1,0 +1,25 @@
+.tomas{
+    display: flex;
+    justify-content: center;
+}
+
+form input {
+    display: block;
+}
+
+.invalid {
+    display:block;
+    color:red;
+}
+
+#menu {
+    margin-top:25px;
+    display: flex;
+    justify-content: center;
+}
+
+#menu button {
+    display: block;
+    margin-left:5px;
+    margin-right:5px;
+}

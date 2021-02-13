@@ -1,0 +1,25 @@
+<!-- <div id="container">
+    <div class="images">
+        <img [src]="curstock.Image">
+        <h3>{{curstock.Nama}}</h3>
+        <h4>harga {{curstock.Harga}}</h4>
+        <h4>stok tersedia {{curstock.Qty}}</h4>
+    </div>
+</div> -->
+<div class="card" style="width: 20rem;">
+    <div>
+        <img class="card-img-top" [src]="curstock.Image" alt="Card image cap">
+        <div class="card-block">
+            <h4 class="card-title">{{curstock.Nama}}</h4>
+            <p class="card-text">Price   : Rp {{curstock.Harga}}</p>
+            <p class="card-text">Quantity:    {{curstock.Qty}}</p>
+            <button (click)="addMinQty(-1)">kurang</button>
+            {{[qty]}}
+            <button (click)="addMinQty(+1)">tambah</button>
+            <p>{{[qty]*[curstock.Harga]}}</p>
+            <div style="margin-top: 8px">
+                <button style="width: 130px;" (click)="add()">add</button>
+            </div>
+        </div>
+    </div>
+</div>

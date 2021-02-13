@@ -1,0 +1,17 @@
+#greeting {
+    text-align: center;
+}
+
+#center {
+    display: flex;
+    justify-content: center;
+}
+
+#center button{
+    margin:10px;
+}
+
+#formmonitor {
+    display: flex;
+    justify-content: center;
+}

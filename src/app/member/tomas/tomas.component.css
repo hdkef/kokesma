@@ -1,0 +1,14 @@
+.show-cart li {
+    display: flex;
+}
+.card {
+    padding:10px;
+    display: flex;
+    justify-content: center;
+}
+.card-img-top {
+    width: 200px;
+    height: 200px;
+    align-self: center;
+    display: flex;
+}

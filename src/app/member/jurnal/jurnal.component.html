@@ -1,0 +1,18 @@
+<table>
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let j of journal">
+        <td data-label="Date">{{j.Date}}</td>
+        <td data-label="Nama">{{j.Nama}}</td>
+        <td data-label="Qty">{{j.Qty}}</td>
+        <td data-label="Total">{{j.Total}}</td>
+      </tr>
+    </tbody>
+  </table>
