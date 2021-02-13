@@ -20,7 +20,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(private store:Store<fromAppReducer.AppState>,private router:Router) { }
   ngOnDestroy(): void {
-    this.subs.unsubscribe()
+    if (this.subs != null){
+      this.subs.unsubscribe()
+    }
     this.subs2.unsubscribe()
     this.store.dispatch(new fromAuthActions.DeleteInfo())
   }
