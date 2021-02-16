@@ -23,9 +23,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let s of monstock">
-          <td data-label="Qty">{{s.Nama}}</td>
+          <td data-label="Nama">{{s.Nama}}</td>
           <td data-label="Qty">{{s.Qty}}</td>
-          <td data-label="Total">{{s.Harga}}</td>
+          <td data-label="Harga">{{s.Harga}}</td>
         </tr>
       </tbody>
     </table>
@@ -44,7 +44,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let s of moncurstock">
-          <td data-label="Qty">{{s.Nama}}</td>
+          <td data-label="Nama">{{s.Nama}}</td>
           <td data-label="Qty">{{s.Qty}}</td>
         </tr>
       </tbody>
@@ -66,8 +66,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let j of monjournal">
-          <td data-label="Nama">{{j.Date}}</td>
-          <td data-label="Qty">{{j.Nama}}</td>
+          <td data-label="Date">{{j.Date}}</td>
+          <td data-label="Nama">{{j.Nama}}</td>
           <td data-label="Qty">{{j.Qty}}</td>
           <td data-label="Total">Rp {{j.Total}}</td>
         </tr>
