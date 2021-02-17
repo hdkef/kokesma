@@ -1,4 +1,52 @@
 <div id="container">
+    <mat-card>
+      <div class="center">
+        <mat-card-title>Member login</mat-card-title>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="center">
+          <mat-form-field appearance="outline">
+            <mat-label>NIM</mat-label>
+            <input matInput placeholder="NIM" formControlName="NIM">
+            <mat-hint>
+              <span class="invalid" *ngIf="loginForm.get('NIM').touched">
+                <span class="invalid" *ngIf="loginForm.get('NIM').errors?.required">masukan NIM</span>
+              </span>
+          </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="center">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Password" type='password' formControlName="Pass">
+            <mat-hint>
+              <span class="invalid" *ngIf="loginForm.get('Pass').touched">
+                <span class="invalid" *ngIf="loginForm.get('Pass').errors?.required">Masukan password</span>
+              </span>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="center">
+          <button mat-raised-button type="submit" color="primary" [disabled]="!loginForm.valid">login</button>
+          <a routerLink='/member/register'><button mat-raised-button type="button">register</button></a>
+        </div>
+        <div style="text-align: center;">
+          {{info}}
+        </div>
+      </form>
+    </mat-card>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- <div id="container">
     <div id="login" style="margin-top:25vh">
         <form [formGroup]="loginForm" (ngSubmit)="login()">
             <h2 style="display: block;">Login</h2>
@@ -19,4 +67,4 @@
     <div style="text-align: center;">
         {{info}}
     </div>
-</div>
+</div> -->

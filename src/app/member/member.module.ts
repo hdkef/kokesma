@@ -9,7 +9,11 @@ import { TomasComponent } from './tomas/tomas.component';
 import { AuthGuard } from './auth/auth-guard';
 import { LoginToggle } from './auth/login-toggle';
 import { JurnalComponent } from './jurnal/jurnal.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input'
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +26,12 @@ import { JurnalComponent } from './jurnal/jurnal.component';
       {path:'login',component:LoginComponent,canActivate:[LoginToggle]},
       {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
       {path:'register',component:RegisterComponent}
-    ])
+    ]),
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers:[AuthGuard,LoginToggle]
 })

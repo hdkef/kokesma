@@ -1,4 +1,69 @@
 <div id="container">
+  <mat-card>
+    <div class="center">
+      <mat-card-title>Register</mat-card-title>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="center">
+        <mat-form-field appearance="outline">
+          <mat-label>Rumah</mat-label>
+          <input matInput placeholder="Rumah" formControlName="Rumah">
+          <mat-hint>
+            <span class="invalid" *ngIf="registerForm.get('Rumah').touched">
+              <span class="invalid" *ngIf="registerForm.get('Rumah').errors?.required">Rumah wajib</span>
+            </span>
+        </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="center">
+        <mat-form-field appearance="outline">
+          <mat-label>Nama</mat-label>
+          <input matInput placeholder="Nama" formControlName="Nama">
+          <mat-hint>
+            <span class="invalid" *ngIf="registerForm.get('Nama').touched">
+              <span class="invalid" *ngIf="registerForm.get('Nama').errors?.required">Nama wajib</span>
+          </span>
+        </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="center">
+        <mat-form-field appearance="outline">
+          <mat-label>NIM</mat-label>
+          <input matInput placeholder="NIM" formControlName="NIM">
+          <mat-hint>
+            <span class="invalid" *ngIf="registerForm.get('NIM').touched">
+              <span class="invalid" *ngIf="registerForm.get('NIM').errors?.required">NIM wajib</span>
+              <span class="invalid" *ngIf="registerForm.get('NIM').value <= 1000000000">NIM wajib 10 digit</span>
+            </span>
+        </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="center">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type='password' formControlName="Pass">
+          <mat-hint>
+            <span class="invalid" *ngIf="registerForm.get('Pass').touched">
+              <span class="invalid" *ngIf="registerForm.get('Pass').errors?.required">Pass wajib</span>
+          </span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="center">
+        <button mat-raised-button type="submit" color="primary" [disabled]="!registerForm.valid">register</button>
+        <a routerLink='/member/login'><button mat-raised-button type="button">login</button></a>
+      </div>
+      <div style="text-align: center;">
+        {{info}}
+      </div>
+    </form>
+  </mat-card>
+</div>
+
+
+
+
+<!-- <div id="container">
     <div id="register" style="margin-top:25vh">
         <form [formGroup]="registerForm" (ngSubmit)="register()">
             <h2 style="display: block;">Register</h2>
@@ -25,4 +90,4 @@
     <div style="text-align: center;">
         {{info}}
     </div>
-</div>
+</div> -->

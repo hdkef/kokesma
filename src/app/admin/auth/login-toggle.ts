@@ -6,11 +6,11 @@ import * as fromAppReducer from '../../redux/reducer/app-reducer'
 @Injectable()
 export class LoginToggle implements CanActivate{
     constructor(private store:Store<fromAppReducer.AppState>, private router:Router) { }
-    
+
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve,_)=>{
       this.store.select("auth").subscribe(x=>{
-        if(x.role == "ADM"){
+        if(x.role == "PBU" || x.role == "ACC" || x.role == "ADM"){
           this.router.navigateByUrl("/admin/dashboard")
           resolve(false)
         }

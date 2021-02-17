@@ -8,12 +8,13 @@ import { TomasComponent } from './tomas/tomas.component';
 import { AuthGuard } from './auth/auth-guard';
 import { LoginToggle } from './auth/login-toggle';
 import { MonitorComponent } from './monitor/monitor.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [DashboardComponent,LoginComponent, TomasComponent, MonitorComponent],
   imports: [
+    ReactiveFormsModule,
     CommonModule,
     SharedModule,
     RouterModule.forChild([

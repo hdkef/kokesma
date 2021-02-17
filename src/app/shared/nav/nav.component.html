@@ -1,13 +1,24 @@
-<nav class="navbar navbar-expand navbar-light bg-light flex-column flex-md-row pipe-navbar justify-md-content-between">
-    <a class="navbar-brand" routerLink="/landing-page"><img src="../../../assets/logo.png" width="50" height="30" class="d-inline-block align-top" /> Kokesma</a>
-    <div class="navbar-nav-scroll ml-md-auto">
-      <ul class="navbar-nav pipe-navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/member" rel="noopener">Member</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin" rel="noopener">Admin</a>
-        </li>          
-      </ul>
+<div id="abs"></div>
+<nav>
+    <div id="ident">
+        <div id="logo">
+            <img src="assets/logo.png">
+        </div>
+        <p>Kokesma</p>
     </div>
-  </nav>
+    <div id="menu">
+        <div id="ul-center">
+            <ul>
+                <li><a routerLink='/member'>Member</a></li>
+                <li><a routerLink='/admin'>Admin</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="hamburger">
+      <img (click)="showHide()" src="assets/hamburger.svg">
+    </div>
+</nav>
+<div id="showlist" *ngIf='show'>
+  <a routerLink='/member' (click)="showHide()">Member</a>
+  <a routerLink='/admin' (click)="showHide()">Admin</a>
+</div>

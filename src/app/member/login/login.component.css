@@ -1,4 +1,49 @@
-#login{
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card {
+    display: block;
+    margin-top: 20vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: block;
+}
+
+button {
+  margin:20px;
+}
+
+.invalid {
+  display:block;
+  color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* #login{
     display: flex;
     justify-content: center;
 }
@@ -10,4 +55,4 @@ form input {
 .invalid {
     display:block;
     color:red;
-}
+} */

@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       'NIM':new FormControl(null,Validators.required),
-      'Pass':new FormControl(null,Validators.required)
+      'Pass':new FormControl(null,Validators.required),
+      'Role':new FormControl(null,Validators.required)
     })
     this.subs2 = this.store.select("auth").subscribe((x)=>{
       if (x["info"] !== "null"){
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(){
     let NIM = this.loginForm.value.NIM
     let Password = this.loginForm.value.Pass
-    let Role = "ADM"
+    let Role = this.loginForm.value.Role
     this.store.dispatch(new fromAuthActions.LoginStart({nim:NIM,password:Password,role:Role}))
     this.subs = this.store.select("auth").subscribe(x=>{
       if(x.token){

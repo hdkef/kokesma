@@ -13,6 +13,7 @@ import { TomasEffects } from './redux/side-effects/tomas-effects';
 import { AuthInterceptorService } from './http-interceptor/auth-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorComponent } from './error/error.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ErrorComponent } from './error/error.component';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects,TomasEffects]),
     SharedModule,
+    NoopAnimationsModule,
   ],
   bootstrap: [AppComponent],
   providers:[{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}]
