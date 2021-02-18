@@ -22,7 +22,10 @@ import { ReactiveFormsModule } from '@angular/forms';
       {path:'login',component:LoginComponent, canActivate:[LoginToggle]},
       {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
       {path:'monitor/:rumah',component:MonitorComponent, canActivate:[AuthGuard]},
-      {path:'tomas',component:TomasComponent, canActivate:[AuthGuard]}
+      {path:'tomas',component:TomasComponent, canActivate:[AuthGuard]},
+      {path:'acc',loadChildren:()=>{
+        return import('./akuntansi/akuntansi.module').then((m)=>{return m.AkuntansiModule})
+      },canActivate:[AuthGuard]}
     ])
   ],
   providers:[AuthGuard,LoginToggle]

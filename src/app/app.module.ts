@@ -14,6 +14,7 @@ import { AuthInterceptorService } from './http-interceptor/auth-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorComponent } from './error/error.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { AccEffects } from './redux/side-effects/acc-effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([AuthEffects,TomasEffects]),
+    EffectsModule.forRoot([AuthEffects,TomasEffects,AccEffects]),
     SharedModule,
     NoopAnimationsModule,
   ],

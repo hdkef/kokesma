@@ -2,6 +2,7 @@
 <div id="center">
     <button (click)="navigate('/admin/tomas')">Kontrol Tomas</button>
     <button (click)="showForm()">Monitor Tomas</button>
+    <a routerLink='/admin/acc'><button>Akuntansi</button></a>
 </div>
 <div id="formmonitor">
     <form *ngIf="show" (ngSubmit)="goMonitor()" [formGroup]="monitorForm">

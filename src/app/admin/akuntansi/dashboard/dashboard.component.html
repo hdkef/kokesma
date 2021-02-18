@@ -1,0 +1,12 @@
+<div style="text-align: center;">
+  {{info}}
+</div>
+<div id="insert">
+  <form [formGroup]="formAcc" (ngSubmit)='submit()'>
+    <input type='text' placeholder="subject" formControlName='Subject'>
+    <input placeholder="kredit" formControlName='Kredit'>
+    <input placeholder="debit" formControlName='Debit'>
+    <textarea placeholder="keterangan" formControlName='Ket'></textarea>
+    <button [disabled]='!formAcc.valid' type='submit'>submit</button>
+  </form>
+</div>

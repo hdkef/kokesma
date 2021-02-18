@@ -50,7 +50,7 @@ export function authReducer (
                 role:action.payload["role"]
             }
         case fromAuthActions.LOGOUT_START:
-            return {...state,id:0,token:null,expiresAtDate:null,info:"null"}
+            return {...state,id:0,rumah:null,nama:null,nim:null,token:null,expiresAtDate:null,info:"null",role:"MEM"}
         default:
             return state
     }

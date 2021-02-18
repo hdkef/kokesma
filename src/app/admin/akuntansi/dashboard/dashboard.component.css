@@ -1,0 +1,13 @@
+#insert {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: block;
+  padding:20px;
+}
+
+form input, form text-area, form button {
+  display: block;
+}
