@@ -2,6 +2,9 @@ import * as fromAuthActions from '../actions/auth-actions'
 
 export interface State {
     id:number
+    nama:string
+    nim:string
+    rumah:string
     token:string
     role:string,
     expiresAtDate:any
@@ -10,6 +13,9 @@ export interface State {
 
 const initialState = {
     id:0,
+    nama:"",
+    nim:"",
+    rumah:"",
     token:null,
     role:"MEM",
     expiresAtDate:null,
@@ -35,6 +41,9 @@ export function authReducer (
             return {
                 ...state,
                 id:action.payload["id"],
+                nama:action.payload["nama"],
+                rumah:action.payload["rumah"],
+                nim:action.payload["nim"],
                 token:action.payload["token"],
                 expiresAtDate:action.payload["expiresAtDate"],
                 errorMessage:"",

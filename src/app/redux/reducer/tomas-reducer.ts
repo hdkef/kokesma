@@ -2,9 +2,6 @@ import { Tomas } from 'src/app/model/tomas'
 import * as fromTomasActions from '../actions/tomas-actions'
 
 export interface State {
-    nama:string,
-    nim:any,
-    rumah:string,
     journal:Tomas[],
     curstocklist:Tomas[],
     admHome:string[],
@@ -19,9 +16,6 @@ export interface State {
 }
 
 const initialState = {
-    nama:null,
-    nim:null,
-    rumah:null,
     journal:null,
     curstocklist:null,
     admHome:null,
@@ -73,9 +67,6 @@ export function tomasReducer (
             return state
         case fromTomasActions.TOMAS_MEM_SUCCESS:
             return {...state,
-            nama:action.payload["nama"],
-            nim:action.payload["nim"],
-            rumah:action.payload["rumah"],
             curstocklist:action.payload["curstock"],
             journal:action.payload["journal"]
         }

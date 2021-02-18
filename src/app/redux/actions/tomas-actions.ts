@@ -66,7 +66,7 @@ export class TomasMemInit implements Action{
 
 export class TomasMemSuccess implements Action{
     readonly type: string = TOMAS_MEM_SUCCESS
-    constructor(public payload:{nama:string,nim:any,rumah:string,curstock:Tomas[],journal:Tomas[]}){}
+    constructor(public payload:{curstock:Tomas[],journal:Tomas[]}){}
 }
 
 export class TomasAddAdmTomas implements Action{

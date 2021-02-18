@@ -28,10 +28,13 @@ export class AuthEffects {
                 let token = x["Token"]
                 let expiresAt = x["ExpiresAt"]
                 let role = x["Role"]
+                let nama = x["Nama"]
+                let rumah = x["Rumah"]
+                let nim = x["NIM"]
                 let expiresAtDate = new Date(new Date().getTime() + expiresAt)
-                this.saveToLocal(id,token,expiresAtDate,role)
+                this.saveToLocal(id,token,expiresAtDate,role,nama,rumah,nim)
                 this.autoLogout(expiresAt)
-                return new fromAuthActions.LoginSuccess({id:id,token:token,expiresAtDate:expiresAtDate,role:role})
+                return new fromAuthActions.LoginSuccess({id:id,token:token,expiresAtDate:expiresAtDate,role:role,nama:nama,rumah:rumah,nim:nim})
             }),
             catchError(err=>{
                 return of(new fromAuthActions.SendInfo(err.error))
@@ -46,12 +49,15 @@ export class AuthEffects {
             if(localStorage.getItem("userData")){
                 let userData = JSON.parse(localStorage.getItem("userData"))
                 let id:number = userData["ID"]
+                let nama = userData["Nama"]
+                let nim = userData["NIM"]
+                let rumah = userData["Rumah"]
                 let token:string = userData["Token"]
                 let expiresatdate = userData["ExpiresAtDate"]
                 let role = userData["Role"]
                 let duration = new Date(expiresatdate).getTime() - new Date().getTime()
                 this.autoLogout(duration)
-                return of(new fromAuthActions.LoginSuccess({id:id,token:token,expiresAtDate:expiresatdate,role:role}))
+                return of(new fromAuthActions.LoginSuccess({id:id,token:token,expiresAtDate:expiresatdate,role:role,nama:nama,rumah:rumah,nim:nim}))
             }
             else{return of()}
         })
@@ -97,12 +103,15 @@ export class AuthEffects {
 
     constructor(private actions$:Actions, private http:HttpClient, private router:Router, private store:Store<fromAppReducer.AppState>){}
 
-    saveToLocal(id,token,expiresatdate,role){
+    saveToLocal(id,token,expiresatdate,role,nama,rumah,nim){
         let userData = {
             ID:id,
             Token:token,
             ExpiresAtDate:expiresatdate,
-            Role:role
+            Role:role,
+            Nama:nama,
+            Rumah:rumah,
+            Nim:nim
         }
         localStorage.setItem("userData",JSON.stringify(userData))
     }

@@ -12,7 +12,7 @@ import { Tomas } from "src/app/model/tomas";
 
 @Injectable()
 export class TomasEffects {
-    
+
     constructor(private actions$:Actions, private http:HttpClient, private router:Router, private store:Store<fromAppReducer.AppState>){}
 
     @Effect()
@@ -89,12 +89,9 @@ export class TomasEffects {
         switchMap((action:fromTomasActions.TomasMemInit)=>{
             return this.http.get(`${environment.api_url}/tomas/meminit`)
             .pipe(map((x)=>{
-                let nama = x["Nama"]
-                let nim = x["NIM"]
-                let rumah = x["Rumah"]
                 let curstock:Tomas[] = x["Curstock"]
                 let journal:Tomas[] = x["Journal"]
-                return new fromTomasActions.TomasMemSuccess({nama:nama,nim:nim,rumah:rumah,curstock:curstock,journal:journal})
+                return new fromTomasActions.TomasMemSuccess({curstock:curstock,journal:journal})
             },catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
             })))
@@ -136,7 +133,7 @@ export class TomasEffects {
             })))
         })
     )
-    
+
     // @Effect()
     // memJournal = this.actions$.pipe(
     //     ofType(fromTomasActions.TOMAS_MEM_JOURNAL),

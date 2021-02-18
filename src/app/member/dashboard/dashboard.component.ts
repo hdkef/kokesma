@@ -25,11 +25,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   info:string = "status info"
   subs1:Subscription
   subs2:Subscription
+  subs3:Subscription
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
     this.subs1.unsubscribe()
     this.subs2.unsubscribe()
+    this.subs3.unsubscribe()
     this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
 
@@ -37,9 +39,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.Checkout = []
     this.store.dispatch(new fromTomasActions.TomasMemInit())
     this.subs1 = this.store.select("tomas").subscribe(x=>{
-      this.Nama = x["nama"]
-      this.NIM = x["nim"]
-      this.Rumah = x["rumah"]
       this.Curstock = x["curstocklist"]
       this.Journal = x["journal"]
     })
@@ -49,6 +48,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.tablecheckout = null
         this.showJ = false
       }
+    })
+    this.subs3 = this.store.select("auth").subscribe((x)=>{
+      this.Nama = x["nama"]
+      this.Rumah = x["rumah"]
+      this.NIM = x["nim"]
     })
   }
 
@@ -61,7 +65,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.showJ = false
       this.showT = false
     }
-    else{this.showJ = true;this.showT = false} 
+    else{this.showJ = true;this.showT = false}
   }
 
   showAdd(){
@@ -69,7 +73,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.showT = false
       this.showJ = false
     }
-    else{this.showT = true;this.showJ = false} 
+    else{this.showT = true;this.showJ = false}
   }
 
   pushToCheckout(newitem){
