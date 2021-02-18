@@ -20,10 +20,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  navigate(url){
-    this.router.navigateByUrl(url)
-  }
-
   showForm(){
     if (this.show){
       this.show = false

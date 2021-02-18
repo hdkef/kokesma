@@ -20,7 +20,7 @@
             </select>
             <input type="text" placeholder="Qty" formControlName="Qty">
             <input type="text" placeholder="Batch" formControlName="Batch">
-            <button type="submit" *ngIf="addAdmTomasForm.valid">Submit</button>
+            <button type="submit" [disabled]="!addAdmTomasForm.valid">Submit</button>
         </form>
     </div>
     <div class="tomas" *ngIf="toggleAddItems">
@@ -29,7 +29,7 @@
             <input type="text" placeholder="Nama" formControlName="Nama">
             <input type="text" placeholder="Harga dalam rupiah" formControlName="Harga">
             <input type="text" placeholder="image" formControlName="Image">
-            <button type="submit" *ngIf="addItemForm.valid">Submit</button>
+            <button type="submit" [disabled]="!addItemForm.valid">Submit</button>
         </form>
     </div>
 </div>

@@ -4,15 +4,13 @@ import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
-import { TomasComponent } from './tomas/tomas.component';
 import { AuthGuard } from './auth/auth-guard';
 import { LoginToggle } from './auth/login-toggle';
-import { MonitorComponent } from './monitor/monitor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [DashboardComponent,LoginComponent, TomasComponent, MonitorComponent],
+  declarations: [DashboardComponent,LoginComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,
@@ -21,8 +19,12 @@ import { ReactiveFormsModule } from '@angular/forms';
       {path:'',redirectTo:'login'},
       {path:'login',component:LoginComponent, canActivate:[LoginToggle]},
       {path:'dashboard',component:DashboardComponent, canActivate:[AuthGuard]},
-      {path:'monitor/:rumah',component:MonitorComponent, canActivate:[AuthGuard]},
-      {path:'tomas',component:TomasComponent, canActivate:[AuthGuard]},
+      {path:'monitor',loadChildren:()=>{
+        return import('./monitor/monitor.module').then((m)=>{return m.MonitorModule})
+      }, canActivate:[AuthGuard]},
+      {path:'tomas',loadChildren:()=>{
+        return import('./tomas/tomas.module').then((m)=>{return m.TomasModule})
+      }, canActivate:[AuthGuard]},
       {path:'acc',loadChildren:()=>{
         return import('./akuntansi/akuntansi.module').then((m)=>{return m.AkuntansiModule})
       },canActivate:[AuthGuard]}
