@@ -15,7 +15,9 @@ export class MonitorComponent implements OnInit,OnDestroy {
 
   constructor(private route:ActivatedRoute, private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
-    this.subs.unsubscribe()
+    if (this.subs){
+      this.subs.unsubscribe()
+    }
     this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
 

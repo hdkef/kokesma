@@ -19,7 +19,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
-    this.subs.unsubscribe()
+    if (this.subs){
+      this.subs.unsubscribe()
+    }
     this.store.dispatch(new fromAuthActions.DeleteInfo())
   }
 

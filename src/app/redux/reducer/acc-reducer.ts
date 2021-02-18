@@ -26,10 +26,10 @@ export function AccReducer (
       return {...state,info:action.payload}
 
     case fromAccActions.ACC_DESTROY_INFO:
-      return {...state,info:'null'}
+      return {...state,info:"null"}
 
     default:
-      return state
+      return {...state,info:"null"}
   }
 
 }

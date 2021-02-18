@@ -23,10 +23,10 @@ export class AccEffects {
       .pipe(map((x)=>{
         let message = x["MESSAGE"]
         return new fromAccActions.AccSendInfo(message)
-      },catchError((err)=>{
-        console.log('catcherror send info', err.error)
+      }),
+      catchError(err=>{
         return of(new fromAccActions.AccSendInfo(err.error))
-      })))
+      }))
     })
   )
 }

@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit,OnDestroy {
       'Ket':new FormControl(null,Validators.required)
     })
     this.subs1 = this.store.select("acc").subscribe((x)=>{
-      if (x['info'] != 'null'){
+      console.log("infofff",x["info"])
+      if (x['info'] !== 'null'){
         this.info = x["info"]
       }
     })

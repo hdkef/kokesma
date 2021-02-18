@@ -29,9 +29,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
-    this.subs1.unsubscribe()
-    this.subs2.unsubscribe()
-    this.subs3.unsubscribe()
+    if (this.subs1){
+      this.subs1.unsubscribe()}
+    if (this.subs2){
+      this.subs2.unsubscribe()}
+    if (this.subs3){this.subs3.unsubscribe()}
     this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
 

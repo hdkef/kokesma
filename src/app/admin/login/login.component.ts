@@ -23,7 +23,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(this.subs != null){
       this.subs.unsubscribe()
     }
-    this.subs2.unsubscribe()
+    if (this.subs2){
+      this.subs2.unsubscribe()
+    }
     this.store.dispatch(new fromAuthActions.DeleteInfo())
   }
 
@@ -35,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
     this.subs2 = this.store.select("auth").subscribe((x)=>{
       if (x["info"] !== "null"){
-        this.info = 'null'
+        this.info = x["info"]
       }
     })
   }

@@ -25,7 +25,9 @@ export class TomasComponent implements OnInit,OnDestroy {
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
-    this.subs.unsubscribe()
+    if (this.subs){
+      this.subs.unsubscribe()
+    }
     this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
 
@@ -52,7 +54,7 @@ export class TomasComponent implements OnInit,OnDestroy {
         this.info = x["info"]
       }
     })
-    
+
   }
 
   toggleInTomas(){
