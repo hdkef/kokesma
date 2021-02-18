@@ -18,6 +18,7 @@ export class MonitorComponent implements OnInit,OnDestroy {
     if (this.subs){
       this.subs.unsubscribe()
     }
+    if (this.subs2){this.subs2.unsubscribe()}
     this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
 
@@ -28,9 +29,10 @@ export class MonitorComponent implements OnInit,OnDestroy {
   moncurstock:Tomas[]
   sum:Number
   subs:Subscription
+  subs2:Subscription
 
   ngOnInit(): void {
-    this.route.params.subscribe(x=>{
+    this.subs2 = this.route.params.subscribe(x=>{
       this.Rumah = x["rumah"]
       this.store.dispatch(new fromTomasActions.TomasAdmMonitor(this.Rumah))
     })

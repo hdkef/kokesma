@@ -1,12 +1,25 @@
-<div style="text-align: center;">
+<div style="text-align: center;padding:10px;">
   {{info}}
 </div>
-<div id="insert">
+<div id="menu">
+  <button (click)="showOne()">add transaction</button>
+  <button (click)="showTwo()">show jurnal</button>
+</div>
+<div class="insert" *ngIf="show1">
   <form [formGroup]="formAcc" (ngSubmit)='submit()'>
     <input type='text' placeholder="subject" formControlName='Subject'>
     <input placeholder="kredit" formControlName='Kredit'>
     <input placeholder="debit" formControlName='Debit'>
     <textarea placeholder="keterangan" formControlName='Ket'></textarea>
     <button [disabled]='!formAcc.valid' type='submit'>submit</button>
+  </form>
+</div>
+<div class="insert" *ngIf="show2">
+  <form [formGroup]="formJurnal" (ngSubmit)="goJurnal()">
+    <label>dari tggl</label>
+    <input formControlName="FDate" type="date">
+    <label>ke tggl</label>
+    <input formControlName="SDate" type="date">
+    <button type="submit" [disabled]="!formJurnal.valid">go</button>
   </form>
 </div>

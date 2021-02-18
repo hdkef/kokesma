@@ -1,0 +1,25 @@
+<div>
+  <div style="text-align: center;padding:10px;">
+    {{info}}
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Tanggal</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Debit</th>
+        <th scope="col">Kredit</th>
+        <th scope="col">Ket</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of accjurnal">
+        <td data-label="Tanggal">{{a.Date}}</td>
+        <td data-label="Subject">{{a.Subject}}</td>
+        <td data-label="Debit">{{a.Debit}}</td>
+        <td data-label="Kredit">{{a.Kredit}}</td>
+        <td data-label="Ket">{{a.Ket}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

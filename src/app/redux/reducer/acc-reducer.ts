@@ -17,12 +17,16 @@ export function AccReducer (
 ){
   switch (action.type){
 
+    case fromAccActions.ACC_JOURNAL_START:
+      return state
+
+    case fromAccActions.ACC_JOURNAL_SUCCESS:
+      return {...state,acc_journal:action.payload}
+
     case fromAccActions.ACC_INSERT_START:
-      console.log("reducer insert")
       return state
 
     case fromAccActions.ACC_SEND_INFO:
-      console.log('send info reducer')
       return {...state,info:action.payload}
 
     case fromAccActions.ACC_DESTROY_INFO:
