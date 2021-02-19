@@ -15,12 +15,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorComponent } from './error/error.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AccEffects } from './redux/side-effects/acc-effects';
+import { NavgComponent } from './navg/navg.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingPageComponent,
     ErrorComponent,
+    NavgComponent,
   ],
   imports: [
     BrowserModule,

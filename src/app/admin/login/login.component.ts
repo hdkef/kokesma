@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   subs:Subscription
   info:string = 'status info'
   subs2:Subscription
+  load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>,private router:Router) { }
   ngOnDestroy(): void {
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       'Role':new FormControl(null,Validators.required)
     })
     this.subs2 = this.store.select("auth").subscribe((x)=>{
+      this.load = x["load"]
       if (x["info"] !== "null"){
         this.info = x["info"]
       }

@@ -9,6 +9,7 @@ export interface State {
     role:string,
     expiresAtDate:any
     info:string
+    load:boolean
 }
 
 const initialState = {
@@ -19,7 +20,8 @@ const initialState = {
     token:null,
     role:"MEM",
     expiresAtDate:null,
-    info:"null"
+    info:"null",
+    load:false
 }
 
 export function authReducer (
@@ -28,13 +30,13 @@ export function authReducer (
 ){
     switch (action.type){
         case fromAuthActions.SEND_INFO:
-            return {...state,info:action.payload}
+            return {...state,info:action.payload,load:false}
         case fromAuthActions.DELETE_INFO:
-            return {...state,info:'null'}
+            return {...state,info:'null',load:false}
         case fromAuthActions.REGIST_START:
-            return state
+            return {...state,load:true}
         case fromAuthActions.LOGIN_START:
-            return state
+            return {...state,load:true}
         case fromAuthActions.AUTO_LOGIN:
             return state
         case fromAuthActions.LOGIN_SUCCESS:
@@ -47,7 +49,8 @@ export function authReducer (
                 token:action.payload["token"],
                 expiresAtDate:action.payload["expiresAtDate"],
                 errorMessage:"",
-                role:action.payload["role"]
+                role:action.payload["role"],
+                load:false
             }
         case fromAuthActions.LOGOUT_START:
             return {...state,id:0,rumah:null,nama:null,nim:null,token:null,expiresAtDate:null,info:"null",role:"MEM"}

@@ -13,6 +13,7 @@ export interface State {
     moncurstock:Tomas[],
     monstocklist:Tomas[],
     sum:Number,
+    load:boolean
 }
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
     moncurstock:null,
     monstocklist:null,
     sum:null,
+    load:false
 }
 
 export function tomasReducer (
@@ -34,26 +36,14 @@ export function tomasReducer (
     action:any
 ){
     switch(action.type){
-        // case fromTomasActions.TOMAS_ADM_CURSTOCK:
-        //     return state
-        // case fromTomasActions.TOMAS_ADM_CURSTOCK_SUCCESS:
-        //     return {
-        //         ...state,
-        //         curstocklist:action.payload["curstock"]
-        //     }
-        // case fromTomasActions.TOMAS_MEM_JOURNAL:
-        //     return state
-        // case fromTomasActions.TOMAS_MEM_JOURNAL_SUCCESS:
-        //     return {
-        //         ...state,
-        //         journal:action.payload["journal"]
-        //     }
+      case  fromTomasActions.TOMAS_ADD_ADMTOMAS:
+            return {...state,load:true}
         case  fromTomasActions.TOMAS_DELETE_INFO:
-            return {...state,info:"null"}
+            return {...state,info:"null",load:false}
         case fromTomasActions.TOMAS_ADM_BACKUPRESET:
-            return state
+            return {...state,load:true}
         case fromTomasActions.TOMAS_ADM_MONITOR:
-            return state
+            return {...state,load:true}
         case fromTomasActions.TOMAS_ADM_MONITOR_SUCCESS:
             return {
                 ...state,
@@ -61,37 +51,33 @@ export function tomasReducer (
                 monjournal:action.payload["monjournal"],
                 moncurstock:action.payload["moncurstock"],
                 monstocklist:action.payload["monstocklist"],
-                sum:action.payload["sum"]
+                sum:action.payload["sum"],
+                load:false
             }
         case fromTomasActions.TOMAS_MEM_INIT:
-            return state
+            return {...state,load:true}
         case fromTomasActions.TOMAS_MEM_SUCCESS:
             return {...state,
             curstocklist:action.payload["curstock"],
-            journal:action.payload["journal"]
+            journal:action.payload["journal"],
+            load:false,
         }
         case fromTomasActions.TOMAS_ADM_INIT:
-            return state
+            return {...state,load:true}
         case fromTomasActions.TOMAS_ADM_SUCCESS:
             return {
                 ...state,
                 admHome:action.payload["admHome"],
                 admItemsName:action.payload["admItemName"],
                 admItemsID:action.payload["admItemID"],
+                load:false
             }
         case fromTomasActions.TOMAS_ADD_ITEM:
-            return state
-        case fromTomasActions.TomasSendInfo:
-            return {
-                ...state,
-                info:action.payload
-            }
+            return {...state,load:true}
         case fromTomasActions.TOMAS_ADD_MEMTOMAS:
-            return state
-        case fromTomasActions.TOMAS_ADD_ADMTOMAS:
-            return state
+            return {...state,load:true}
         case fromTomasActions.TOMAS_SEND_INFO:
-            return {...state,info:action.payload}
+            return {...state,info:action.payload,load:false}
         default:
             return state
     }

@@ -30,6 +30,7 @@ export class MonitorComponent implements OnInit,OnDestroy {
   sum:Number
   subs:Subscription
   subs2:Subscription
+  load:boolean
 
   ngOnInit(): void {
     this.subs2 = this.route.params.subscribe(x=>{
@@ -37,6 +38,7 @@ export class MonitorComponent implements OnInit,OnDestroy {
       this.store.dispatch(new fromTomasActions.TomasAdmMonitor(this.Rumah))
     })
     this.subs = this.store.select("tomas").subscribe((x)=>{
+      this.load = x["load"]
       this.monuser = x["monuser"]
       this.monjournal = x["monjournal"]
       this.monstock = x["monstocklist"]

@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   NIM:FormControl
   info:string = "status info"
   subs:Subscription
+  load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
@@ -35,6 +36,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       }
     )
     this.subs = this.store.select("auth").subscribe((x)=>{
+      this.load = x["load"]
       if (x["info"] !== "null"){
         this.info = x["info"]
       }

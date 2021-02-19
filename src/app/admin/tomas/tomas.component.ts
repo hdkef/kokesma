@@ -19,7 +19,7 @@ export class TomasComponent implements OnInit,OnDestroy {
   itemsNameOptions:string[]
   itemsIDOptions:any[]
   subs:Subscription
-
+  load:boolean
   addAdmTomasForm:FormGroup
   addItemForm:FormGroup
 
@@ -47,6 +47,7 @@ export class TomasComponent implements OnInit,OnDestroy {
 
     this.store.dispatch(new fromTomasActions.TomasAdmInit)
     this.subs = this.store.select("tomas").subscribe(x=>{
+      this.load = x["load"]
       this.homeOptions = x.admHome
       this.itemsNameOptions = x.admItemsName
       this.itemsIDOptions = x.admItemsID

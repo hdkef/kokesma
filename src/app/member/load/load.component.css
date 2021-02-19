@@ -1,0 +1,16 @@
+#modal {
+  position: fixed;
+  z-index: 5;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal img {
+  display: block;
+  width:64px;
+  height:64px;
+}

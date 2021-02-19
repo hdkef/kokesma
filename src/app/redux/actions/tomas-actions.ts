@@ -13,31 +13,7 @@ export const TOMAS_ADM_MONITOR = "[Tomas] TOMAS_ADM_MONITOR"
 export const TOMAS_ADM_MONITOR_SUCCESS = "[Tomas] TOMAS_ADM_MONITOR_SUCCESS"
 export const TOMAS_ADM_BACKUPRESET = "[Tomas] TOMAS_ADM_BACKUPRESET"
 export const TOMAS_DELETE_INFO = "[Tomas] TOMAS_DELETE_INFO"
-// export const TOMAS_MEM_JOURNAL = "[Tomas] TOMAS_MEM_JOURNAL"
-// export const TOMAS_MEM_JOURNAL_SUCCESS = "[Tomas] TOMAS_MEM_JOURNAL_SUCCESS"
-// export const TOMAS_ADM_CURSTOCK = "[Tomas] TOMAS_ADM_CURSTOCK"
-// export const TOMAS_ADM_CURSTOCK_SUCCESS = "[Tomas] TOMAS_ADM_CURSTOCK_SUCCESS"
 
-
-// export class TomasAdmCurstock implements Action{
-//     readonly type:string = TOMAS_ADM_CURSTOCK
-//     constructor(public payload:string){}
-// }
-
-// export class TomasAdmCurstockSuccess implements Action{
-//     readonly type:string = TOMAS_ADM_CURSTOCK_SUCCESS
-//     constructor(public payload:{curstock:Tomas[]}){}
-// }
-
-// export class TomasMemJournalSuccess implements Action{
-//     readonly type:string = TOMAS_MEM_JOURNAL
-//     constructor(public payload:{journal:Tomas[]}){}
-// }
-
-// export class TomasMemJournal implements Action{
-//     readonly type:string = TOMAS_MEM_JOURNAL
-//     constructor(){}
-// }
 
 export class TomasDeleteInfo implements Action{
     readonly type: string = TOMAS_DELETE_INFO

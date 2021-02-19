@@ -19,6 +19,7 @@ export class JurnalComponent implements OnInit,OnDestroy {
   info:string = "status info"
   subs1:Subscription
   subs2:Subscription
+  load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>,private route:ActivatedRoute) { }
   ngOnDestroy(): void {
@@ -34,6 +35,7 @@ export class JurnalComponent implements OnInit,OnDestroy {
       this.store.dispatch(new fromAccActions.AccJournalStart({FDate:this.FDate,SDate:this.SDate}))
     })
     this.subs2 = this.store.select("acc").subscribe((a)=>{
+      this.load = a["load"]
       this.accjurnal = a["acc_journal"]
       if(a["info"] != "null"){
         this.info = a["info"]

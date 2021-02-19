@@ -7,10 +7,11 @@ import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard';
 import { LoginToggle } from './auth/login-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoadComponent } from './load/load.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent,LoginComponent],
+  declarations: [DashboardComponent,LoginComponent, LoadComponent],
   imports: [
     ReactiveFormsModule,
     CommonModule,

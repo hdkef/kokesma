@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
   subs1:Subscription
   show1:boolean = false
   show2:boolean = false
+  load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>, private router:Router) { }
   ngOnDestroy(): void {
@@ -40,6 +41,7 @@ export class DashboardComponent implements OnInit,OnDestroy {
       'SDate':new FormControl(null,Validators.required)
     })
     this.subs1 = this.store.select("acc").subscribe((x)=>{
+      this.load = x["load"]
       if (x['info'] !== 'null'){
         this.info = x["info"]
       }

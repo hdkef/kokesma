@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: 'app-navg',
+  templateUrl: './navg.component.html',
+  styleUrls: ['./navg.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavgComponent implements OnInit {
 
   show:boolean = false
 

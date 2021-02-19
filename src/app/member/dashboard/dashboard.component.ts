@@ -24,15 +24,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   tablecheckout:boolean = false
   info:string = "status info"
   subs1:Subscription
-  subs2:Subscription
   subs3:Subscription
+  load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
     if (this.subs1){
       this.subs1.unsubscribe()}
-    if (this.subs2){
-      this.subs2.unsubscribe()}
     if (this.subs3){this.subs3.unsubscribe()}
     this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
@@ -41,10 +39,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.Checkout = []
     this.store.dispatch(new fromTomasActions.TomasMemInit())
     this.subs1 = this.store.select("tomas").subscribe(x=>{
+      this.load = x["load"]
       this.Curstock = x["curstocklist"]
       this.Journal = x["journal"]
-    })
-    this.subs2 = this.store.select("tomas").subscribe(x=>{
       if (x["info"] !== "null"){
         this.info = x["info"]
         this.tablecheckout = null

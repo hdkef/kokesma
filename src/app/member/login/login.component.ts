@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   subs:Subscription
   info:string = 'status info'
   subs2:Subscription
+  load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>,private router:Router) { }
   ngOnDestroy(): void {
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     let Role = "MEM"
     this.store.dispatch(new fromAuthActions.LoginStart({nim:NIM,password:Password,role:Role}))
     this.subs = this.store.select("auth").subscribe(x=>{
+      this.load = x["load"]
       if(x.token){
         this.router.navigateByUrl("/member/dashboard")
       }

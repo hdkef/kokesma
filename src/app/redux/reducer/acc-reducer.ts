@@ -4,11 +4,13 @@ import * as fromAccActions from '../actions/acc-actions'
 export interface State {
   acc_journal:Acc[]
   info:string
+  load:boolean
 }
 
 const initialState = {
   acc_journal:null,
-  info:"null"
+  info:"null",
+  load:false
 }
 
 export function AccReducer (
@@ -18,22 +20,22 @@ export function AccReducer (
   switch (action.type){
 
     case fromAccActions.ACC_JOURNAL_START:
-      return state
+      return {...state,load:true}
 
     case fromAccActions.ACC_JOURNAL_SUCCESS:
-      return {...state,acc_journal:action.payload}
+      return {...state,acc_journal:action.payload,load:false}
 
     case fromAccActions.ACC_INSERT_START:
-      return state
+      return {...state,load:true}
 
     case fromAccActions.ACC_SEND_INFO:
-      return {...state,info:action.payload}
+      return {...state,info:action.payload,load:false}
 
     case fromAccActions.ACC_DESTROY_INFO:
-      return {...state,info:"null"}
+      return {...state,info:"null",load:false}
 
     default:
-      return {...state,info:"null"}
+      return state
   }
 
 }
