@@ -24,7 +24,7 @@ export class AccEffects {
         let message = x["MESSAGE"]
         return new fromAccActions.AccSendInfo(message)
       }),
-      catchError(err=>{
+      catchError((err)=>{
         return of(new fromAccActions.AccSendInfo(err.error))
       }))
     })

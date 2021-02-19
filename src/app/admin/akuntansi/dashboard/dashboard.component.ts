@@ -30,6 +30,12 @@ export class DashboardComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
+    this.subs1 = this.store.select("acc").subscribe((x)=>{
+      this.load = x["load"]
+      if (x['info'] !== 'null'){
+        this.info = x["info"]
+      }
+    })
     this.formAcc = new FormGroup({
       'Subject':new FormControl(null,Validators.required),
       'Kredit':new FormControl(null,Validators.required),
@@ -39,12 +45,6 @@ export class DashboardComponent implements OnInit,OnDestroy {
     this.formJurnal = new FormGroup({
       'FDate':new FormControl(null,Validators.required),
       'SDate':new FormControl(null,Validators.required)
-    })
-    this.subs1 = this.store.select("acc").subscribe((x)=>{
-      this.load = x["load"]
-      if (x['info'] !== 'null'){
-        this.info = x["info"]
-      }
     })
   }
 

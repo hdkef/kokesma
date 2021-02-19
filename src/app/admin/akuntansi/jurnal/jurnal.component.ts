@@ -29,17 +29,18 @@ export class JurnalComponent implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subs1 = this.route.queryParams.subscribe((q)=>{
-      this.FDate = q["FDate"]
-      this.SDate = q["SDate"]
-      this.store.dispatch(new fromAccActions.AccJournalStart({FDate:this.FDate,SDate:this.SDate}))
-    })
     this.subs2 = this.store.select("acc").subscribe((a)=>{
       this.load = a["load"]
       this.accjurnal = a["acc_journal"]
       if(a["info"] != "null"){
         this.info = a["info"]
       }
+    })
+
+    this.subs1 = this.route.queryParams.subscribe((q)=>{
+      this.FDate = q["FDate"]
+      this.SDate = q["SDate"]
+      this.store.dispatch(new fromAccActions.AccJournalStart({FDate:this.FDate,SDate:this.SDate}))
     })
   }
 
