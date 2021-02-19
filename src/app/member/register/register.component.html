@@ -1,9 +1,7 @@
 <app-load *ngIf="load"></app-load>
 <div id="container">
   <mat-card>
-    <div class="center">
-      <mat-card-title>Register</mat-card-title>
-    </div>
+    <h4>Register</h4>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
       <div class="center">
         <mat-form-field appearance="outline">
@@ -51,11 +49,22 @@
         </mat-form-field>
       </div>
       <div class="center">
+        <mat-form-field appearance="outline">
+          <mat-label>Invitation Code</mat-label>
+          <input matInput placeholder="Password" type='password' formControlName="Invit">
+          <mat-hint>
+            <span class="invalid" *ngIf="registerForm.get('Invit').touched">
+              <span class="invalid" *ngIf="registerForm.get('Invit').errors?.required">Invitation code wajib</span>
+          </span>
+          </mat-hint>
+        </mat-form-field>
+      </div>
+      <div style="text-align: center;margin:0px;padding:0px">
+        {{info}}
+      </div>
+      <div class="center">
         <button mat-raised-button type="submit" color="primary" [disabled]="!registerForm.valid">register</button>
         <a routerLink='/member/login'><button mat-raised-button type="button">login</button></a>
-      </div>
-      <div style="text-align: center;">
-        {{info}}
       </div>
     </form>
   </mat-card>

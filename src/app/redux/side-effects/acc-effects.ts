@@ -40,9 +40,9 @@ export class AccEffects {
       return this.http.post(`${environment.api_url}/acc/journal`,jsonData,{headers:header})
       .pipe(map((x)=>{
         return new fromAccActions.AccJournalSuccess(x)
-      },catchError((err)=>{
+      }),catchError((err)=>{
         return of(new fromAccActions.AccSendInfo(err.error))
-      })))
+      }))
     })
   )
 }

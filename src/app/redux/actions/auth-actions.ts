@@ -20,7 +20,7 @@ export class SendInfo implements Action{
 
 export class RegistStart implements Action{
     readonly type: string = REGIST_START
-    constructor(public payload:{Rumah:string,Nama:string,NIM:Number,Password:string,Role:string}){}
+    constructor(public payload:{Rumah:string,Nama:string,NIM:Number,Password:string,Role:string,Invit:string}){}
 }
 
 export class LoginStart implements Action{

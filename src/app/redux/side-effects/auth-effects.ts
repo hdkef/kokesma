@@ -69,25 +69,16 @@ export class AuthEffects {
         switchMap((action:fromAuthActions.RegistStart)=>{
             let header = new HttpHeaders()
             header.append('content-type','application/json')
-            let jsonData = JSON.stringify({Rumah:action.payload["Rumah"],Nama:action.payload["Nama"],NIM:action.payload["NIM"],Password:action.payload["Password"],Role:action.payload["Role"]})
+            let jsonData = JSON.stringify({Rumah:action.payload["Rumah"],Nama:action.payload["Nama"],NIM:action.payload["NIM"],Password:action.payload["Password"],Role:action.payload["Role"],Invit:action.payload["Invit"]})
             return this.http.post(`${environment.api_url}/register`,jsonData,{headers:header})
             .pipe(map((x)=>{
                 let m = x["MESSAGE"]
                 return new fromAuthActions.SendInfo(m)
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromAuthActions.SendInfo(err.error))
-            })))
+            }))
         })
     )
-
-    // @Effect({dispatch:false})
-    // redirectLogin = this.actions$.pipe(
-    //     ofType(fromAuthActions.LOGIN_SUCCESS),
-    //     tap(()=>{
-    //         alert("executed")
-    //         this.router.navigateByUrl("/member/dashboard")
-    //     })
-    // )
 
     @Effect({dispatch:false})
     redirectLogout = this.actions$.pipe(

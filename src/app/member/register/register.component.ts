@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         'NIM':new FormControl(null,[Validators.required, Validators.pattern("^[0-9]{10,}$")]),
         'Nama':new FormControl(null,Validators.required),
         'Pass':new FormControl(null,Validators.required),
+        'Invit':new FormControl(null,Validators.required),
       }
     )
     this.subs = this.store.select("auth").subscribe((x)=>{
@@ -48,8 +49,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     let nim = this.registerForm.value.NIM
     let nama = this.registerForm.value.Nama
     let pass = this.registerForm.value.Pass
+    let invit = this.registerForm.value.Invit
     let role = "MEM"
-    this.store.dispatch(new fromAuthActions.RegistStart({Rumah:rumah,Nama:nama,NIM:nim,Password:pass,Role:role}))
+    this.store.dispatch(new fromAuthActions.RegistStart({Rumah:rumah,Nama:nama,NIM:nim,Password:pass,Role:role,Invit:invit}))
   }
 
 }

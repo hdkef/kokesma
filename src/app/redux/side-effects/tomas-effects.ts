@@ -28,8 +28,7 @@ export class TomasEffects {
             }),
             catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })
-            )
+            }))
         })
     )
 
@@ -44,9 +43,9 @@ export class TomasEffects {
             .pipe(map((x)=>{
                 let message = x["MESSAGE"]
                 return new fromTomasActions.TomasSendInfo(message)
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })))
+            }))
         })
     )
 
@@ -60,9 +59,9 @@ export class TomasEffects {
             .pipe(map((x)=>{
                 let message = x["MESSAGE"]
                 return new fromTomasActions.TomasSendInfo(message)
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })))
+            }))
         })
     )
 
@@ -77,9 +76,9 @@ export class TomasEffects {
             .pipe(map((x)=>{
                 let message = x["MESSAGE"]
                 return new fromTomasActions.TomasSendInfo(message)
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })))
+            }))
         })
     )
 
@@ -92,9 +91,9 @@ export class TomasEffects {
                 let curstock:Tomas[] = x["Curstock"]
                 let journal:Tomas[] = x["Journal"]
                 return new fromTomasActions.TomasMemSuccess({curstock:curstock,journal:journal})
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })))
+            }))
         })
     )
 
@@ -114,9 +113,9 @@ export class TomasEffects {
                 let monstocklist = x["Stock"]
                 let sum = x["Sum"]
                 return new fromTomasActions.TomasAdmMonitorSuccess({monuser:monuser,monjournal:monjournal,moncurstock:moncurstock,monstocklist:monstocklist,sum:sum})
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })))
+            }))
         })
     )
 
@@ -128,38 +127,10 @@ export class TomasEffects {
             .pipe(map((x)=>{
                 let message = x["MESSAGE"]
                 return new fromTomasActions.TomasSendInfo(message)
-            },catchError((err)=>{
+            }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
-            })))
+            }))
         })
     )
 
-    // @Effect()
-    // memJournal = this.actions$.pipe(
-    //     ofType(fromTomasActions.TOMAS_MEM_JOURNAL),
-    //     switchMap((action:fromTomasActions.TomasMemJournal)=>{
-    //         return this.http.get<Tomas[]>(`${environment.api_url}/tomas/memgetjournal`)
-    //         .pipe(map((x)=>{
-    //             return new fromTomasActions.TomasMemJournalSuccess({journal:x})
-    //         },catchError((err)=>{
-    //             return of(err.error)
-    //         })))
-    //     })
-    // )
-
-    // @Effect()
-    // admCurstock = this.actions$.pipe(
-    //     ofType(fromTomasActions.TOMAS_ADM_CURSTOCK),
-    //     switchMap((action:fromTomasActions.TomasAdmCurstock)=>{
-    //         let header = new HttpHeaders()
-    //         header.append('content-type','application/json')
-    //         let jsonData = JSON.stringify({Rumah:action.payload})
-    //         return this.http.post<Tomas[]>(`${environment.api_url}/tomas/admgetcurstocklist`,jsonData,{headers:header})
-    //         .pipe(map((x)=>{
-    //             return new fromTomasActions.TomasAdmCurstockSuccess({curstock:x})
-    //         },catchError((err)=>{
-    //             return of(err.error)
-    //         })))
-    //     })
-    // )
 }
