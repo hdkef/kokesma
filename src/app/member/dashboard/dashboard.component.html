@@ -1,4 +1,9 @@
-<app-load *ngIf="load"></app-load>
+<div id="center">
+  <button (click)="logout()">logout</button>
+  <a routerLink="/member/tomas"><button>beli tomas</button></a>
+  <a routerLink="/member/jurnal"><button>lihat jurnal</button></a>
+</div>
+<!-- <app-load *ngIf="load"></app-load>
 <div id="greet">
   <h1>Hi, {{Nama}}</h1>
   <p style="color:red">{{info}}</p>
@@ -36,4 +41,4 @@
       </div>
     </div>
 </div>
-<app-jurnal [journal]="Journal" *ngIf="showJ"></app-jurnal>
+<app-jurnal [journal]="Journal" *ngIf="showJ"></app-jurnal> -->

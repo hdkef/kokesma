@@ -5,10 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { TomasComponent } from './tomas/tomas.component';
 import { AuthGuard } from './auth/auth-guard';
 import { LoginToggle } from './auth/login-toggle';
-import { JurnalComponent } from './jurnal/jurnal.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -18,7 +16,7 @@ import { LoadComponent } from './load/load.component';
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent, DashboardComponent, TomasComponent, JurnalComponent, LoadComponent],
+  declarations: [RegisterComponent, LoginComponent, DashboardComponent, LoadComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -26,6 +24,8 @@ import { LoadComponent } from './load/load.component';
       {path:'',redirectTo:'login'},
       {path:'login',component:LoginComponent,canActivate:[LoginToggle]},
       {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
+      {path:'tomas',loadChildren:()=>{return import('./tomas/tomas.module').then(m=>{return m.TomasModule})},canActivate:[AuthGuard]},
+      {path:'jurnal',loadChildren:()=>{return import('./jurnal/jurnal.module').then(m=>{return m.JurnalModule})},canActivate:[AuthGuard]},
       {path:'register',component:RegisterComponent}
     ]),
     ReactiveFormsModule,

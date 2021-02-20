@@ -83,14 +83,25 @@ export class TomasEffects {
     )
 
     @Effect()
-    memInit = this.actions$.pipe(
-        ofType(fromTomasActions.TOMAS_MEM_INIT),
-        switchMap((action:fromTomasActions.TomasMemInit)=>{
-            return this.http.get(`${environment.api_url}/tomas/meminit`)
+    memInitCurstock = this.actions$.pipe(
+        ofType(fromTomasActions.TOMAS_MEM_INIT_CURSTOCK),
+        switchMap((action:fromTomasActions.TomasMemInitCurstock)=>{
+            return this.http.get<Tomas[]>(`${environment.api_url}/tomas/meminitcurstock`)
             .pipe(map((x)=>{
-                let curstock:Tomas[] = x["Curstock"]
-                let journal:Tomas[] = x["Journal"]
-                return new fromTomasActions.TomasMemSuccess({curstock:curstock,journal:journal})
+                return new fromTomasActions.TomasMemSuccessCustock(x)
+            }),catchError((err)=>{
+                return of(new fromTomasActions.TomasSendInfo(err.error))
+            }))
+        })
+    )
+
+    @Effect()
+    memInitJournal = this.actions$.pipe(
+        ofType(fromTomasActions.TOMAS_MEM_INIT_JOURNAL),
+        switchMap((action:fromTomasActions.TomasMemInitJournal)=>{
+            return this.http.get<Tomas[]>(`${environment.api_url}/tomas/meminitjournal`)
+            .pipe(map((x)=>{
+                return new fromTomasActions.TomasMemSuccessJournal(x)
             }),catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
             }))

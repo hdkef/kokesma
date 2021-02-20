@@ -13,82 +13,86 @@ import * as fromAuthActions from '../../redux/actions/auth-actions'
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  Nama:string
-  NIM:any
-  Rumah:string
-  Checkout:Tomas[]
-  Curstock:Tomas[]
-  Journal:Tomas[]
-  showJ:boolean = false
-  showT:boolean = false
-  tablecheckout:boolean = false
-  info:string = "status info"
-  subs1:Subscription
-  subs3:Subscription
-  load:boolean
+  // Nama:string
+  // NIM:any
+  // Rumah:string
+  // Checkout:Tomas[]
+  // Curstock:Tomas[]
+  // Journal:Tomas[]
+  // showJ:boolean = false
+  // showT:boolean = false
+  // tablecheckout:boolean = false
+  // info:string = "status info"
+  // subs1:Subscription
+  // subs3:Subscription
+  // load:boolean
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
   ngOnDestroy(): void {
-    if (this.subs1){
-      this.subs1.unsubscribe()}
-    if (this.subs3){this.subs3.unsubscribe()}
-    this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
+    // if (this.subs1){
+    //   this.subs1.unsubscribe()}
+    // if (this.subs3){this.subs3.unsubscribe()}
+    // this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
   }
 
   ngOnInit(): void {
-    this.Checkout = []
-    this.store.dispatch(new fromTomasActions.TomasMemInit())
-    this.subs1 = this.store.select("tomas").subscribe(x=>{
-      this.load = x["load"]
-      this.Curstock = x["curstocklist"]
-      this.Journal = x["journal"]
-      if (x["info"] !== "null"){
-        this.info = x["info"]
-        this.tablecheckout = null
-        this.showJ = false
-      }
-    })
-    this.subs3 = this.store.select("auth").subscribe((x)=>{
-      this.Nama = x["nama"]
-      this.Rumah = x["rumah"]
-      this.NIM = x["nim"]
-    })
+    // this.Checkout = []
+    // this.store.dispatch(new fromTomasActions.TomasMemInit())
+    // this.subs1 = this.store.select("tomas").subscribe(x=>{
+    //   this.load = x["load"]
+    //   this.Curstock = x["curstocklist"]
+    //   this.Journal = x["journal"]
+    //   if (x["info"] !== "null"){
+    //     this.info = x["info"]
+    //     this.tablecheckout = null
+    //     this.showJ = false
+    //   }
+    // })
+    // this.subs3 = this.store.select("auth").subscribe((x)=>{
+    //   this.Nama = x["nama"]
+    //   this.Rumah = x["rumah"]
+    //   this.NIM = x["nim"]
+    // })
   }
 
   logout(){
-    this.store.dispatch(new fromAuthActions.LogoutStart())
+      this.store.dispatch(new fromAuthActions.LogoutStart())
   }
 
-  showJurnal(){
-    if (this.showJ){
-      this.showJ = false
-      this.showT = false
-    }
-    else{this.showJ = true;this.showT = false}
-  }
+  // logout(){
+  //   this.store.dispatch(new fromAuthActions.LogoutStart())
+  // }
 
-  showAdd(){
-    if (this.showT){
-      this.showT = false
-      this.showJ = false
-    }
-    else{this.showT = true;this.showJ = false}
-  }
+  // showJurnal(){
+  //   if (this.showJ){
+  //     this.showJ = false
+  //     this.showT = false
+  //   }
+  //   else{this.showJ = true;this.showT = false}
+  // }
 
-  pushToCheckout(newitem){
-    let parsedJSON:Tomas = JSON.parse(newitem)
-    this.tablecheckout = true
-    this.Checkout.push(parsedJSON)
-  }
+  // showAdd(){
+  //   if (this.showT){
+  //     this.showT = false
+  //     this.showJ = false
+  //   }
+  //   else{this.showT = true;this.showJ = false}
+  // }
 
-  checkout(){
-    let removedUnused = this.Checkout.map((x)=>{return {ItemID:x.ItemID,Qty:x.Qty}})
-    let jsonData = JSON.stringify({House:this.Rumah,Items:removedUnused})
-    this.store.dispatch(new fromTomasActions.TomasAddMemTomas(jsonData))
-  }
+  // pushToCheckout(newitem){
+  //   let parsedJSON:Tomas = JSON.parse(newitem)
+  //   this.tablecheckout = true
+  //   this.Checkout.push(parsedJSON)
+  // }
 
-  delete(index){
-    this.Checkout.splice(index,1)
-  }
+  // checkout(){
+  //   let removedUnused = this.Checkout.map((x)=>{return {ItemID:x.ItemID,Qty:x.Qty}})
+  //   let jsonData = JSON.stringify({House:this.Rumah,Items:removedUnused})
+  //   this.store.dispatch(new fromTomasActions.TomasAddMemTomas(jsonData))
+  // }
+
+  // delete(index){
+  //   this.Checkout.splice(index,1)
+  // }
 
 }

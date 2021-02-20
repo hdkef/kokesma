@@ -7,8 +7,10 @@ export const TOMAS_ADD_ITEM = "[Tomas] TOMAS_ADD_ITEM"
 export const TOMAS_ADD_MEMTOMAS = "[Tomas] TOMAS_ADD_MEMTOMAS"
 export const TOMAS_SEND_INFO = "[Tomas] TOMAS_SEND_INFO"
 export const TOMAS_ADD_ADMTOMAS = "[Tomas] TOMAS_ADD_ADMTOMAS"
-export const TOMAS_MEM_INIT = "[Tomas] TOMAS_MEM_INIT"
-export const TOMAS_MEM_SUCCESS = "[Tomas] TOMAS_MEM_SUCCESS"
+export const TOMAS_MEM_INIT_CURSTOCK = "[Tomas] TOMAS_MEM_INIT_CURSTOCK"
+export const TOMAS_MEM_SUCCESS_CURSTOCK = "[Tomas] TOMAS_MEM_SUCCESS_CURSTOCK"
+export const TOMAS_MEM_INIT_JOURNAL = "[Tomas] TOMAS_MEM_INIT_JOURNAL"
+export const TOMAS_MEM_SUCCESS_JOURNAL = "[Tomas] TOMAS_MEM_SUCCESS_JOURNAL"
 export const TOMAS_ADM_MONITOR = "[Tomas] TOMAS_ADM_MONITOR"
 export const TOMAS_ADM_MONITOR_SUCCESS = "[Tomas] TOMAS_ADM_MONITOR_SUCCESS"
 export const TOMAS_ADM_BACKUPRESET = "[Tomas] TOMAS_ADM_BACKUPRESET"
@@ -35,14 +37,24 @@ export class TomasAdmMonitorSuccess implements Action{
     constructor(public payload:{monuser:string[],monjournal:Tomas[],moncurstock:Tomas[],monstocklist:Tomas[],sum:Number}){}
 }
 
-export class TomasMemInit implements Action{
-    readonly type: string = TOMAS_MEM_INIT
+export class TomasMemInitCurstock implements Action{
+    readonly type: string = TOMAS_MEM_INIT_CURSTOCK
     constructor(){}
 }
 
-export class TomasMemSuccess implements Action{
-    readonly type: string = TOMAS_MEM_SUCCESS
-    constructor(public payload:{curstock:Tomas[],journal:Tomas[]}){}
+export class TomasMemSuccessCustock implements Action{
+    readonly type: string = TOMAS_MEM_SUCCESS_CURSTOCK
+    constructor(public payload:Tomas[]){}
+}
+
+export class TomasMemInitJournal implements Action{
+  readonly type: string = TOMAS_MEM_INIT_JOURNAL
+  constructor(){}
+}
+
+export class TomasMemSuccessJournal implements Action{
+  readonly type: string = TOMAS_MEM_SUCCESS_JOURNAL
+  constructor(public payload:Tomas[]){}
 }
 
 export class TomasAddAdmTomas implements Action{

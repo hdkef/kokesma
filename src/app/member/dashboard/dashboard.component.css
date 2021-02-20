@@ -1,4 +1,14 @@
-#greet {
+#center {
+  display: flex;
+  justify-content: center;
+}
+
+#center button{
+  margin:10px;
+  margin-bottom:25px;
+}
+
+/* #greet {
   text-align: center;
 }
 
@@ -92,10 +102,6 @@ body {
     }
 
     table td::before {
-      /*
-      * aria-label has no advantage, it won't be read inside a table
-      content: attr(aria-label);
-      */
       content: attr(data-label);
       float: left;
       font-weight: bold;
@@ -111,4 +117,4 @@ body {
     #grid {
         grid-template-columns: 1fr;
     }
-}
+} */

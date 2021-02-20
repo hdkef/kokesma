@@ -54,13 +54,20 @@ export function tomasReducer (
                 sum:action.payload["sum"],
                 load:false
             }
-        case fromTomasActions.TOMAS_MEM_INIT:
+        case fromTomasActions.TOMAS_MEM_INIT_CURSTOCK:
             return {...state,load:true}
-        case fromTomasActions.TOMAS_MEM_SUCCESS:
+        case fromTomasActions.TOMAS_MEM_SUCCESS_CURSTOCK:
             return {...state,
-            curstocklist:action.payload["curstock"],
-            journal:action.payload["journal"],
+            curstocklist:action.payload,
             load:false,
+        }
+        case fromTomasActions.TOMAS_MEM_INIT_JOURNAL:
+            return {...state,load:true}
+        case fromTomasActions.TOMAS_MEM_SUCCESS_JOURNAL:
+            console.log("melewati reducer success")
+            return {...state,
+            journal:action.payload,
+            load:false
         }
         case fromTomasActions.TOMAS_ADM_INIT:
             return {...state,load:true}

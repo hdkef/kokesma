@@ -1,6 +1,39 @@
-<div class="card" style="width: 20rem;">
+<app-load *ngIf="load"></app-load>
+<div style="text-align: center;margin:5px;">
+  {{info}}
+</div>
+<div id="wrapper">
+  <div *ngIf="tablecheckout">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Nama</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Total</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of Checkout">
+          <td data-label="Nama">{{c.Nama}}</td>
+          <td data-label="Qty">{{c.Qty}}</td>
+          <td data-label="Total">{{c.Total}}</td>
+          <td data-label="Delete"><button (click)="delete(Checkout.indexOf(c))">remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display: flex;justify-content: center;">
+      <button (click)="checkout()" style="display: block;background-color: green;color:white;width:200px;height: 40px;">CHECKOUT</button>
+    </div>
+  </div>
+  <div id="grid" style="margin-bottom: 50px;">
+    <app-item *ngFor="let c of Curstock" [curstock]="c" (addItemEvent)="pushToCheckout($event)"></app-item>
+  </div>
+</div>
+
+<!-- <div class="card" style="width: 20rem;">
     <div>
-        <img class="card-img-top" [src]="curstock.Image" alt="Card image cap">
+        <img class="card-img-top" [src]="curstock.Image">
         <div class="card-block">
             <h4 class="card-title">{{curstock.Nama}}</h4>
             <p class="card-text">Price   : Rp {{curstock.Harga}}</p>
@@ -14,4 +47,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

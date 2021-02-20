@@ -1,46 +1,97 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import {EventEmitter} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Tomas } from 'src/app/model/tomas';
+import * as fromAppReducer from '../../redux/reducer/app-reducer'
+import * as fromTomasActions from '../../redux/actions/tomas-actions'
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tomas',
   templateUrl: './tomas.component.html',
   styleUrls: ['./tomas.component.css']
 })
-export class TomasComponent implements OnInit {
+export class TomasComponent implements OnInit, OnDestroy {
 
-  @Output() addItemEvent = new EventEmitter()
-  @Input() curstock:Tomas
-
-  qty:Number = 0
-  constructor() {}
+  Nama:string
+  // NIM:any
+  Rumah:string
+  Checkout:Tomas[] = []
+  Curstock:Tomas[] = []
+  subs1:Subscription
+  subs2:Subscription
+  // Journal:Tomas[]
+  // showJ:boolean = false
+  // showT:boolean = false
+  tablecheckout:boolean = false
+  info:string = "status info"
+  // subs1:Subscription
+  // subs3:Subscription
+  load:boolean
+  constructor(private store:Store<fromAppReducer.AppState>) {}
+  ngOnDestroy(): void {
+    if (this.subs1){this.subs1.unsubscribe()}
+    if (this.subs2){this.subs2.unsubscribe()}
+    this.store.dispatch(new fromTomasActions.TomasDeleteInfo())
+  }
 
   ngOnInit(): void {
+    this.subs1 = this.store.select("tomas").subscribe(x=>{
+        this.load = x["load"]
+        this.Curstock = x["curstocklist"]
+        if (x["info"] !== "null"){
+          this.info = x["info"]
+          this.tablecheckout = null
+        }
+      })
+    this.subs2 = this.store.select("auth").subscribe(x=>{
+      this.Rumah = x["rumah"]
+    })
+    this.store.dispatch(new fromTomasActions.TomasMemInitCurstock)
   }
 
-  addMinQty(value){
-    this.qty = this.qty + value
-    if (this.qty < 0) {
-      this.qty = 0
-    }
-    else if (this.qty > this.curstock.Qty){
-      this.qty = this.curstock.Qty
-    }
+  pushToCheckout(newitem){
+    let parsedJSON:Tomas = JSON.parse(newitem)
+    this.tablecheckout = true
+    this.Checkout.push(parsedJSON)
   }
 
-  add(){
-    let qty = this.qty
-    if (qty == 0) {
-      alert("ga bisa add 0 item")
+  delete(index){
+    this.Checkout.splice(index,1)
+  }
+
+  checkout(){
+    let removedUnused = this.Checkout.map((x)=>{return {ItemID:x.ItemID,Qty:x.Qty}})
+    let jsonData = JSON.stringify({House:this.Rumah,Items:removedUnused})
+    if (this.Checkout.length == 0){
+      alert("maaf sahabat, tidak bisa beli barang kosong")
       return
     }
-    let object = {
-    ItemID:this.curstock.ItemID,
-    Nama:this.curstock.Nama,
-    Qty:this.qty,
-    Total:<any>this.qty * <any>this.curstock.Harga}
-    let jsonData = JSON.stringify(object)
-    this.addItemEvent.emit(jsonData)
+    this.store.dispatch(new fromTomasActions.TomasAddMemTomas(jsonData))
   }
+
+  // addMinQty(value){
+  //   this.qty = this.qty + value
+  //   if (this.qty < 0) {
+  //     this.qty = 0
+  //   }
+  //   else if (this.qty > this.curstock.Qty){
+  //     this.qty = this.curstock.Qty
+  //   }
+  // }
+
+  // add(){
+  //   let qty = this.qty
+  //   if (qty == 0) {
+  //     alert("ga bisa add 0 item")
+  //     return
+  //   }
+  //   let object = {
+  //   ItemID:this.curstock.ItemID,
+  //   Nama:this.curstock.Nama,
+  //   Qty:this.qty,
+  //   Total:<any>this.qty * <any>this.curstock.Harga}
+  //   let jsonData = JSON.stringify(object)
+  //   this.addItemEvent.emit(jsonData)
+  // }
 
 }

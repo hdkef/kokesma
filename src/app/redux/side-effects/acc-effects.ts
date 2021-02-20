@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { of } from "rxjs";
 import { catchError, map, switchMap } from "rxjs/operators";
-import { Acc } from "src/app/model/acc";
 import { environment } from "src/environments/environment";
 import * as fromAccActions from '../actions/acc-actions'
 

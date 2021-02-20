@@ -1,5 +1,4 @@
 import { Action } from "@ngrx/store"
-import { Acc } from "src/app/model/acc"
 
 export const ACC_INSERT_START = '[ACC] ACC_INSERT_START'
 export const ACC_SEND_INFO = '[ACC] ACC_SEND_INFO'
