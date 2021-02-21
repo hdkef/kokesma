@@ -13,22 +13,24 @@
 <div id="items">
   <app-item *ngFor="let i of ItemOptions" [item]="i" (addItemEvent)="pushToList($event)"></app-item>
 </div>
-<table>
-  <thead>
-    <tr>
-      <th scope="col">Nama</th>
-      <th scope="col">Qty</th>
-      <th scope="col">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let c of list">
-      <td data-label="Nama">{{c.Nama}}</td>
-      <td data-label="Qty">{{c.Qty}}</td>
-      <td data-label="Delete"><button (click)="delete(list.indexOf(c))">remove</button></td>
-    </tr>
-  </tbody>
-</table>
-<div style="display: flex;justify-content: center;margin:5px">
-  <button (click)="submitTomas()" style="display: block;background-color: green;color:white;width:200px;height: 40px;">SUBMIT</button>
+<div *ngIf="showtable">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Nama</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of list">
+        <td data-label="Nama">{{c.Nama}}</td>
+        <td data-label="Qty">{{c.Qty}}</td>
+        <td data-label="Delete"><button (click)="delete(list.indexOf(c))">remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="display: flex;justify-content: center;margin:5px">
+    <button (click)="submitTomas()" style="display: block;background-color: green;color:white;width:200px;height: 40px;">SUBMIT</button>
+  </div>
 </div>

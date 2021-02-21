@@ -17,9 +17,10 @@ export class InputComponent implements OnInit, OnDestroy {
   ItemOptions:Tomas[]
   subs:Subscription
   load:boolean
-  info:string
+  info:string = "status info"
   list:Tomas[] = []
   homeBatchForm:FormGroup
+  showtable:boolean = false
 
   constructor(private store:Store<fromAppReducer.AppState>) { }
 
@@ -35,6 +36,7 @@ export class InputComponent implements OnInit, OnDestroy {
       this.ItemOptions = x["admItemOptions"]
       if (x["info"] !== "null") {
         this.info = x["info"]
+        this.showtable = null
       }
     })
     this.store.dispatch(new fromTomasActions.TomasAdmInit())
@@ -46,6 +48,7 @@ export class InputComponent implements OnInit, OnDestroy {
 
   pushToList(object){
     let jsonData:Tomas = JSON.parse(object)
+    this.showtable = true
     this.list.push(jsonData)
   }
 
@@ -61,6 +64,7 @@ export class InputComponent implements OnInit, OnDestroy {
     let removedUnused = this.list.map((x)=>{return {ItemID:x.ItemID,Qty:x.Qty}})
     let jsonData = JSON.stringify({Home:this.homeBatchForm.value.Home,Batch:this.homeBatchForm.value.Batch,Items:removedUnused})
     this.store.dispatch(new fromTomasActions.TomasAddAdmTomas(jsonData))
+    this.list = []
   }
 
 }

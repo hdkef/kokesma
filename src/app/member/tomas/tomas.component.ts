@@ -62,6 +62,7 @@ export class TomasComponent implements OnInit, OnDestroy {
       return
     }
     this.store.dispatch(new fromTomasActions.TomasAddMemTomas(jsonData))
+    this.Checkout = []
   }
 
 }
