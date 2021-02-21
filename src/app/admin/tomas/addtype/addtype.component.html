@@ -1,1 +1,18 @@
-<p>addtype works!</p>
+<app-load *ngIf="load"></app-load>
+<div style="text-align: center;margin: 5px;">
+  {{info}}
+</div>
+<div class="center" *ngIf="imgurl">
+  <img [src]="imgurl" id="imgtest">
+</div>
+<div class="center">
+  <div>
+    <form [formGroup]="typeForm" (ngSubmit)="submit()">
+      <input placeholder="nama" formControlName="Nama">
+      <input placeholder="harga" formControlName="Harga">
+      <input placeholder="image" formControlName="Image">
+      <button type="button" (click)="checkImage()">check image</button>
+      <button type="submit" style="width:185px" [disabled]="!typeForm.valid">submit</button>
+    </form>
+  </div>
+</div>
