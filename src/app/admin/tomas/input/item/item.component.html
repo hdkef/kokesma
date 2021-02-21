@@ -1,0 +1,9 @@
+<div id="item">
+  <h4>{{item.Nama}}</h4>
+  <div  class="center">
+    <form [formGroup]="itemForm" (ngSubmit)="add()">
+      <input placeholder="quantity" formControlName="Qty">
+      <button type="submit" [disabled]="!itemForm.valid">Add</button>
+    </form>
+  </div>
+</div>

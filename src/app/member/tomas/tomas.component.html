@@ -22,7 +22,7 @@
         </tr>
       </tbody>
     </table>
-    <div style="display: flex;justify-content: center;">
+    <div style="display: flex;justify-content: center;margin:5px;">
       <button (click)="checkout()" style="display: block;background-color: green;color:white;width:200px;height: 40px;">CHECKOUT</button>
     </div>
   </div>
@@ -30,21 +30,3 @@
     <app-item *ngFor="let c of Curstock" [curstock]="c" (addItemEvent)="pushToCheckout($event)"></app-item>
   </div>
 </div>
-
-<!-- <div class="card" style="width: 20rem;">
-    <div>
-        <img class="card-img-top" [src]="curstock.Image">
-        <div class="card-block">
-            <h4 class="card-title">{{curstock.Nama}}</h4>
-            <p class="card-text">Price   : Rp {{curstock.Harga}}</p>
-            <p class="card-text">Quantity:    {{curstock.Qty}}</p>
-            <button (click)="addMinQty(-1)">kurang</button>
-            {{[qty]}}
-            <button (click)="addMinQty(+1)">tambah</button>
-            <p>{{[qty]*[curstock.Harga]}}</p>
-            <div style="margin-top: 8px">
-                <button style="width: 130px;" (click)="add()">add</button>
-            </div>
-        </div>
-    </div>
-</div> -->

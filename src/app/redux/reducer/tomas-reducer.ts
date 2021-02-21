@@ -5,8 +5,7 @@ export interface State {
     journal:Tomas[],
     curstocklist:Tomas[],
     admHome:string[],
-    admItemsName:string[],
-    admItemsID:any[],
+    admItemOptions:Tomas[],
     info:string,
     monuser:string[],
     monjournal:Tomas[],
@@ -20,8 +19,7 @@ const initialState = {
     journal:null,
     curstocklist:null,
     admHome:null,
-    admItemsName:null,
-    admItemsID:null,
+    admItemOptions:null,
     info:"null",
     monuser:null,
     monjournal:null,
@@ -64,7 +62,6 @@ export function tomasReducer (
         case fromTomasActions.TOMAS_MEM_INIT_JOURNAL:
             return {...state,load:true}
         case fromTomasActions.TOMAS_MEM_SUCCESS_JOURNAL:
-            console.log("melewati reducer success")
             return {...state,
             journal:action.payload,
             load:false
@@ -75,8 +72,7 @@ export function tomasReducer (
             return {
                 ...state,
                 admHome:action.payload["admHome"],
-                admItemsName:action.payload["admItemName"],
-                admItemsID:action.payload["admItemID"],
+                admItemOptions:action.payload["admItemOptions"],
                 load:false
             }
         case fromTomasActions.TOMAS_ADD_ITEM:

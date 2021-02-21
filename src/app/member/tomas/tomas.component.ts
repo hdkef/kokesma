@@ -13,20 +13,15 @@ import { Subscription } from 'rxjs';
 export class TomasComponent implements OnInit, OnDestroy {
 
   Nama:string
-  // NIM:any
   Rumah:string
   Checkout:Tomas[] = []
   Curstock:Tomas[] = []
   subs1:Subscription
   subs2:Subscription
-  // Journal:Tomas[]
-  // showJ:boolean = false
-  // showT:boolean = false
   tablecheckout:boolean = false
   info:string = "status info"
-  // subs1:Subscription
-  // subs3:Subscription
   load:boolean
+
   constructor(private store:Store<fromAppReducer.AppState>) {}
   ngOnDestroy(): void {
     if (this.subs1){this.subs1.unsubscribe()}
@@ -68,30 +63,5 @@ export class TomasComponent implements OnInit, OnDestroy {
     }
     this.store.dispatch(new fromTomasActions.TomasAddMemTomas(jsonData))
   }
-
-  // addMinQty(value){
-  //   this.qty = this.qty + value
-  //   if (this.qty < 0) {
-  //     this.qty = 0
-  //   }
-  //   else if (this.qty > this.curstock.Qty){
-  //     this.qty = this.curstock.Qty
-  //   }
-  // }
-
-  // add(){
-  //   let qty = this.qty
-  //   if (qty == 0) {
-  //     alert("ga bisa add 0 item")
-  //     return
-  //   }
-  //   let object = {
-  //   ItemID:this.curstock.ItemID,
-  //   Nama:this.curstock.Nama,
-  //   Qty:this.qty,
-  //   Total:<any>this.qty * <any>this.curstock.Harga}
-  //   let jsonData = JSON.stringify(object)
-  //   this.addItemEvent.emit(jsonData)
-  // }
 
 }

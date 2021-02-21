@@ -1,0 +1,15 @@
+#item {
+  display: block;
+  text-align: center;
+  margin:10px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+#image-center {
+  display: block;
+  width: 250px;
+}

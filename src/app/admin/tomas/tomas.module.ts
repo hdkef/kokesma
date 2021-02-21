@@ -13,7 +13,13 @@ import { LoadComponent } from './load/load.component';
     ReactiveFormsModule,
     CommonModule,
     RouterModule.forChild([
-      {path:'',component:TomasComponent}
+      {path:'',component:TomasComponent},
+      {path:'input',loadChildren:()=>{
+        return import('./input/input.module').then(m=>m.InputModule)
+      }},
+      {path:'addtype',loadChildren:()=>{
+        return import('./addtype/addtype.module').then(m=>m.AddtypeModule)
+      }},
     ])
   ]
 })

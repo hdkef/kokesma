@@ -22,9 +22,8 @@ export class TomasEffects {
             return this.http.get(`${environment.api_url}/tomas/init`)
             .pipe(map((x)=>{
                 let home = x["Home"]
-                let name = x["ItemsName"]
-                let id = x["Items"]
-                return new fromTomasActions.TomasAdmSuccess({admHome:home,admItemName:name,admItemID:id})
+                let option = x["ItemOptions"]
+                return new fromTomasActions.TomasAdmSuccess({admHome:home,admItemOptions:option})
             }),
             catchError((err)=>{
                 return of(new fromTomasActions.TomasSendInfo(err.error))
@@ -69,10 +68,9 @@ export class TomasEffects {
     addAdmTomas = this.actions$.pipe(
         ofType(fromTomasActions.TOMAS_ADD_ADMTOMAS),
         switchMap((action:fromTomasActions.TomasAddAdmTomas)=>{
-            let jsonData = JSON.stringify({House:action.payload["House"],ItemID:action.payload["ItemID"],Batch:action.payload["Batch"],Qty:action.payload["Qty"]})
             let header = new HttpHeaders()
             header.append('content-type','application/json')
-            return this.http.post(`${environment.api_url}/tomas/adminputtomas`,jsonData,{headers:header})
+            return this.http.post(`${environment.api_url}/tomas/adminputtomas`,action.payload,{headers:header})
             .pipe(map((x)=>{
                 let message = x["MESSAGE"]
                 return new fromTomasActions.TomasSendInfo(message)

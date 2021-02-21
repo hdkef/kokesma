@@ -59,7 +59,7 @@ export class TomasMemSuccessJournal implements Action{
 
 export class TomasAddAdmTomas implements Action{
     readonly type: string = TOMAS_ADD_ADMTOMAS
-    constructor(public payload:{ItemID:string,Qty:any,House:string,Batch:any}){}
+    constructor(public payload:string){}
 }
 
 export class TomasAddMemTomas implements Action{
@@ -79,7 +79,7 @@ export class TomasAdmInit implements Action{
 
 export class TomasAdmSuccess implements Action{
     readonly type: string = TOMAS_ADM_SUCCESS
-    constructor(public payload:{admHome:string[],admItemName:string[],admItemID:any[]}){}
+    constructor(public payload:{admHome:string[],admItemOptions:any}){}
 }
 
 export class TomasAddItem implements Action{
